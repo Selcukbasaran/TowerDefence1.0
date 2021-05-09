@@ -18,9 +18,17 @@ public class Tower : MonoBehaviour
     public GameObject arrowPrefab; //ok için referans
     public Transform firePoint;     //okun spawn olacaðý nokta
 
+    public Transform archerOnTower;
+    Animator archerShoot;
+    bool facingRight = true;
+    float yonHesabi;
+
     void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f); //update target fonksiyonu saniyede iki defa dönecek.
+        archerOnTower = this.gameObject.transform.GetChild(0);
+        archerShoot = archerOnTower.gameObject.GetComponent<Animator>();
+
     }
     void UpdateTarget()
     {
@@ -41,6 +49,17 @@ public class Tower : MonoBehaviour
         if (nearestEnemy !=null && shortestdistance <= range)
         {
             hedef = nearestEnemy.transform;   //düþman bulduk menzilimizde o zaman hedefimiz o düþman
+
+            yonHesabi = transform.position.x - hedef.position.x;
+
+            if(yonHesabi > 0 && facingRight)
+            {
+                flipFace();
+            }
+            if(yonHesabi <= 0 && !facingRight)
+            {
+                flipFace();
+            }
         }
         else
         {
@@ -54,8 +73,10 @@ public class Tower : MonoBehaviour
 
         if (fireCooldown <= 0f)
         {
+            
             Shoot();
             fireCooldown = 1f / fireRate;
+            
         }
 
         fireCooldown -= Time.deltaTime;
@@ -64,6 +85,7 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
+        archerShoot.Play("ArcherShoot");
         GameObject projectile = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
 
         Projectile_arrow arrow = projectile.GetComponent<Projectile_arrow>();
@@ -72,6 +94,8 @@ public class Tower : MonoBehaviour
         {
             arrow.Chase(hedef);
         }
+        
+        return;
     }
 
 
@@ -81,5 +105,12 @@ public class Tower : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position,range);
     }
 
+    void flipFace()
+    {
+        facingRight = !facingRight;
+        Vector3 tempLocalScale = archerOnTower.localScale;
+        tempLocalScale.x *= -1;
+        archerOnTower.localScale = tempLocalScale;
+    }
 
 }

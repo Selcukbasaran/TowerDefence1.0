@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6480749021828802358}
   - component: {fileID: 4612502469499913276}
+  - component: {fileID: 1983809675073169335}
   m_Layer: 0
   m_Name: 38
   m_TagString: Untagged
@@ -82,6 +83,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1983809675073169335
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380912828762461033}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c98f04f913a41e4eac5cd6c7b9c6857, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7416051412780448361
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,10 +201,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hedef: {fileID: 0}
   range: 5
-  fireRate: 1
+  fireRate: 0.5
   enemyTag: Enemy
   arrowPrefab: {fileID: 6608557144854495284, guid: e8d7de3fba33de2418c2944af86b9270, type: 3}
   firePoint: {fileID: 2492291684658486674}
+  archerOnTower: {fileID: 0}
 --- !u!1 &7461302148721734123
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +230,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7461302148721734123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: 0.62, z: 0}
+  m_LocalPosition: {x: -0.374, y: 0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1459577260460344663}
