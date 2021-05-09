@@ -39,5 +39,6 @@ public class Projectile_arrow : MonoBehaviour
     {
         //Debug.Log("Vurdum!!");
         Destroy(gameObject);
+        Destroy(hedef.gameObject); //þimdilik vurulan çýksýn
     }
 }
