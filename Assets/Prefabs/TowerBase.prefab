@@ -97,7 +97,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   new_color: {r: 0.6415094, g: 0.6203275, b: 0.6203275, a: 1}
-  positionOffset: {x: 0, y: 0.6, z: 0}
+  towerSelect: {fileID: 1099344113129793521, guid: 1d4a1abc2693036419494b47052c0042, type: 3}
+  positionOffset_archer: {x: 0, y: 0.5, z: 0}
+  positionOffset_wizard: {x: 0, y: 0.45, z: 0}
 --- !u!61 &8650377401553643135
 BoxCollider2D:
   m_ObjectHideFlags: 0

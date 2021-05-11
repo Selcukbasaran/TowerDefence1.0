@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
 
     void SpawnWave()
     {
-        Debug.Log("Wave Incoming");
+        //Debug.Log("Wave Incoming");
         for (int i = 0; i < wavenum; i++)
         {
             SpawnEnemy();

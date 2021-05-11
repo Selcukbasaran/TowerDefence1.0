@@ -18,18 +18,38 @@ public class TowerBuilder : MonoBehaviour
         
     }
 
-    public GameObject towerPrefab;
-
+    public GameObject archerTower;
+    public GameObject wizardTower;
+    public GameObject supportTower;
+    //public GameObject towerSelect;
+    
     private void Start()
     {
-        towerToBuild = towerPrefab;
+        //towerToBuild = towerSelect;
     }
+
+    /*public void TowerSelected(int t)
+    {
+        switch (t)
+        {
+            case 1:
+                towerToBuild = archerTower;
+                break;
+            case 2:
+                towerToBuild = wizardTower;
+                break;
+        }
+    }*/
+
 
     private GameObject towerToBuild;
 
     public GameObject GetTowerToBuild()
     {
+
         return towerToBuild;
     }
+    
+    
 
 }
