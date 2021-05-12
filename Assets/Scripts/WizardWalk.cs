@@ -7,6 +7,9 @@ public class WizardWalk : MonoBehaviour
 
     public float speed = 5f;
 
+    public int wizHealth = 20; //büyücü caný
+    public GameObject looseHealth;
+
     private Transform target; // hedef waypoint
     private int waypointindex = 0; // kaçýncý waypointe hedefli
 
@@ -15,6 +18,7 @@ public class WizardWalk : MonoBehaviour
     void Start()
     {
         target = Waypoints.waypoints[0];
+        looseHealth = GameObject.Find("Gamemanager");
     }
 
     
@@ -43,6 +47,7 @@ public class WizardWalk : MonoBehaviour
     {
         if (waypointindex >= Waypoints.waypoints.Length-1) //Sonuncu waypointe gelmiþse yok olsun.
         {
+            looseHealth.GetComponent<GameManager>().LooseHealth();
             Destroy(gameObject);
             return;
         }

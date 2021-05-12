@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public Transform spawnpoint;
 
-
+    public int gameHealth = 20;
 
     public float timeBetweenWaves = 3f;
     private float countdown = 2f;
@@ -38,5 +38,10 @@ public class GameManager : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnpoint.position, spawnpoint.rotation);// spawn etme
+    }
+
+    public void LooseHealth()
+    {
+        gameHealth -= 1;
     }
 }
