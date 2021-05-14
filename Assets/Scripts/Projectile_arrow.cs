@@ -38,7 +38,9 @@ public class Projectile_arrow : MonoBehaviour
     void HitTarget()
     {
         //Debug.Log("Vurdum!!");
+        hedef.gameObject.GetComponent<WizardWalk>().wizLooseHealth(5);
         Destroy(gameObject);
-        Destroy(hedef.gameObject); //þimdilik vurulan çýksýn
+        
+        //Destroy(hedef.gameObject); //þimdilik vurulan çýksýn
     }
 }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class WizardWalk : MonoBehaviour
 {
-
+    private Animator animator;
     public float speed = 5f;
 
-    public int wizHealth = 20; //büyücü caný
+    public int Health = 20; //büyücü caný
     public GameObject looseHealth;
+    
 
     private Transform target; // hedef waypoint
     private int waypointindex = 0; // kaçýncý waypointe hedefli
@@ -19,11 +20,14 @@ public class WizardWalk : MonoBehaviour
     {
         target = Waypoints.waypoints[0];
         looseHealth = GameObject.Find("Gamemanager");
+        animator = gameObject.GetComponent<Animator>();
+        InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
     }
 
     
     void Update()
     {
+        
         Vector2 directions = target.position - transform.position; //hedef ver
         transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World);
 
@@ -47,12 +51,31 @@ public class WizardWalk : MonoBehaviour
     {
         if (waypointindex >= Waypoints.waypoints.Length-1) //Sonuncu waypointe gelmiþse yok olsun.
         {
-            looseHealth.GetComponent<GameManager>().LooseHealth();
+            looseHealth.GetComponent<WaveSpawner>().LooseHealth();
             Destroy(gameObject);
             return;
         }
         waypointindex++;
         target = Waypoints.waypoints[waypointindex];
+    }
+
+    void isDead()
+    {
+        if (Health <= 0)
+        {
+            animator.Play("wizard_die");
+            Destroy(gameObject);
+
+        }
+
+    }
+
+
+
+
+    public void wizLooseHealth(int n)
+    {
+        Health -= n;
     }
 
     void flipface()

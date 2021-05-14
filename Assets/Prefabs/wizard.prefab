@@ -116,4 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  Health: 20
+  looseHealth: {fileID: 0}
   facingR: 1

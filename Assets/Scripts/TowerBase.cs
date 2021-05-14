@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TowerBase : MonoBehaviour
 {
     //renk verme
@@ -15,9 +16,12 @@ public class TowerBase : MonoBehaviour
 
     public GameObject towerSelect;
     private GameObject towerPick;
+    private GameObject towerUpgrade;
 
     public Vector3 positionOffset_archer;
     public Vector3 positionOffset_wizard;
+
+    public bool towerBuildable = false;
 
     void Start()
     {
@@ -30,8 +34,19 @@ public class TowerBase : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (towerPick != null)
+        if (transform.childCount != 0)
         {
+            if(transform.GetChild(0).name == "OkcuKulesi(Clone)")
+            {
+                
+                towerUpgrade = (GameObject)Instantiate(towerSelect, transform.position, transform.rotation);
+                towerUpgrade.transform.parent = gameObject.transform;
+                Destroy(transform.GetChild(0).gameObject);
+
+            }
+
+
+            
             Debug.Log("Zaten kule var! - TODO: Bu kýsým kullanýcý için ekrana yazýlsýn");
             return;
         }
@@ -41,6 +56,7 @@ public class TowerBase : MonoBehaviour
         //tower = (GameObject)Instantiate(towerToBuild, transform.position + positionOffset_wizard, transform.rotation);
         // Kule seçici deneme
         towerPick = (GameObject)Instantiate(towerSelect, transform.position,transform.rotation);
+        towerPick.transform.parent = gameObject.transform;
         
 
     }
