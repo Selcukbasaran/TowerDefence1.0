@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class archTower : MonoBehaviour
 {
     [Header("Kule Yetenekleri")]
 
@@ -85,7 +85,7 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        archerShoot.Play("ArcherShoot");
+        archerShoot.Play("ArcherShoot0");
         GameObject projectile = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
 
         Projectile_arrow arrow = projectile.GetComponent<Projectile_arrow>();
