@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1201430821806188683}
   - component: {fileID: 7443346532325182273}
   - component: {fileID: 3623712960306722242}
+  - component: {fileID: 5392206125254377699}
   m_Layer: 0
   m_Name: WizardUp1
   m_TagString: Untagged
@@ -104,6 +105,19 @@ MonoBehaviour:
   wizProjectile: {fileID: 6848910696020220479, guid: 6f9fc5323931a944eb98919efc8e55da, type: 3}
   wiz_firePoint: {fileID: 3059008727045189300}
   shootanim: {fileID: 5585333654323086987, guid: 0c3dde9c74f4a564eb2745db69889566, type: 3}
+--- !u!114 &5392206125254377699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714321468175720339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94d7addb72625b34791ad7cee55c5489, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  part: 4
 --- !u!1 &5786441619798977361
 GameObject:
   m_ObjectHideFlags: 0

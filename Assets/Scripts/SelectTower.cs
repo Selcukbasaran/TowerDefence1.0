@@ -5,8 +5,9 @@ using UnityEngine;
 
 public enum parts
 {
-     archer, wizard, archer_upgraded
+     archer, archer2, archer3, wizard, wizard2, wizard3, support, support2, support3, stone, stone2, stone3
 }
+
 
 public class SelectTower : MonoBehaviour
 {
@@ -15,13 +16,12 @@ public class SelectTower : MonoBehaviour
     public GameObject archerTower;
     public GameObject wizardTower;
     public GameObject supportTower;
-    public GameObject archerUpgraded;
 
     public Vector3 positionOffset_archer;
     public Vector3 positionOffset_wizard;
 
     private GameObject swap;
-    private GameObject swap2;
+    //private GameObject swap2;
 
     public void BuildTower(parts part)
     {
@@ -32,11 +32,6 @@ public class SelectTower : MonoBehaviour
                 swap.transform.parent = transform.parent;
                 break;
 
-            case parts.archer_upgraded:
-                Destroy(swap);
-                swap2 = (GameObject)Instantiate(archerUpgraded, transform.position + positionOffset_archer, transform.rotation);
-                swap2.transform.parent = transform.parent;
-                break;
 
             case parts.wizard:
                 swap = (GameObject)Instantiate(wizardTower, transform.position + positionOffset_wizard, transform.rotation);
@@ -44,6 +39,8 @@ public class SelectTower : MonoBehaviour
                 break;
         }
     }
+
+    
 
     
 }

@@ -5,12 +5,14 @@ using UnityEngine;
 public class Projectile_arrow : MonoBehaviour
 {
     private Transform hedef;
+    public bool face = true;
 
     public float speed = 10f;
 
-    public void Chase(Transform _target)
+    public void Chase(Transform _target , bool n)
     {
         hedef = _target;
+        face = n;
     }
 
     // Update is called once per frame
@@ -20,6 +22,18 @@ public class Projectile_arrow : MonoBehaviour
         {
             Destroy(gameObject);
             return; // bazen yoketme zaman alabilir yok etmesini beklememiz lazým
+        }
+        if (face)
+        {
+            Vector3 tempLocalScale = gameObject.transform.localScale;
+            tempLocalScale.z *= -1;
+            gameObject.transform.localScale = tempLocalScale;
+        }
+        else if(!face)
+        {
+            Vector3 tempLocalScale = gameObject.transform.localScale;
+            tempLocalScale.z *= -1;
+            gameObject.transform.localScale = tempLocalScale;
         }
 
         Vector2 dir = hedef.position - transform.position;

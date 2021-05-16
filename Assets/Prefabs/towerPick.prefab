@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78cca027bbbd8fe4abcd6d5572d0d42c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  part: 1
+  part: 3
 --- !u!1 &1099344113129793521
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +223,6 @@ MonoBehaviour:
   archerTower: {fileID: 7416051412780448361, guid: 4313f84ba1c94fb4ea7935100d431e59, type: 3}
   wizardTower: {fileID: 7400761001834607558, guid: be23382eec7c93c4796502cf2fd7db06, type: 3}
   supportTower: {fileID: 0}
-  archerUpgraded: {fileID: 9197175405539681708, guid: ece849df347839d449ecfb35ffb12f6f, type: 3}
   positionOffset_archer: {x: 0, y: 0.5, z: 0}
   positionOffset_wizard: {x: 0, y: 0.45, z: 0}
 --- !u!1 &6817838725858441724

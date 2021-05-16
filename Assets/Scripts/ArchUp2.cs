@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class archTower : MonoBehaviour
+public class ArchUp2 : MonoBehaviour
 {
     [Header("Kule Yetenekleri")]
 
@@ -36,7 +36,7 @@ public class archTower : MonoBehaviour
         float shortestdistance = Mathf.Infinity; //Eðer düþman bulunmamýþsa düþmana olan mesafemiz sonsuzdur !?!?
         GameObject nearestEnemy = null;
 
-        foreach(GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
             float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < shortestdistance)
@@ -46,17 +46,17 @@ public class archTower : MonoBehaviour
             }
         }
 
-        if (nearestEnemy !=null && shortestdistance <= range)
+        if (nearestEnemy != null && shortestdistance <= range)
         {
             hedef = nearestEnemy.transform;   //düþman bulduk menzilimizde o zaman hedefimiz o düþman
 
             yonHesabi = transform.position.x - hedef.position.x;
 
-            if(yonHesabi > 0 && facingRight)
+            if (yonHesabi > 0 && facingRight)
             {
                 flipFace();
             }
-            if(yonHesabi <= 0 && !facingRight)
+            if (yonHesabi <= 0 && !facingRight)
             {
                 flipFace();
             }
@@ -73,10 +73,10 @@ public class archTower : MonoBehaviour
 
         if (fireCooldown <= 0f)
         {
-            
+
             Shoot();
             fireCooldown = 1f / fireRate;
-            
+
         }
 
         fireCooldown -= Time.deltaTime;
@@ -85,16 +85,16 @@ public class archTower : MonoBehaviour
 
     void Shoot()
     {
-        archerShoot.Play("ArcherShoot0");
+        archerShoot.Play("ArcherShoot2");
         GameObject projectile = (GameObject)Instantiate(arrowPrefab, firePoint.position, firePoint.rotation);
 
         Projectile_arrow arrow = projectile.GetComponent<Projectile_arrow>();
 
         if (arrow != null)
         {
-            arrow.Chase(hedef ,facingRight);
+            arrow.Chase(hedef,facingRight);
         }
-        
+
         return;
     }
 
@@ -102,7 +102,7 @@ public class archTower : MonoBehaviour
     private void OnDrawGizmos() // tower etrafýnda menzilin görünmesi için
     {                           // sadece seçince çizdirmek için OnDrawGizmosSelected()
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position,range);
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 
     void flipFace()

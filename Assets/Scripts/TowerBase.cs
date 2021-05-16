@@ -16,7 +16,8 @@ public class TowerBase : MonoBehaviour
 
     public GameObject towerSelect;
     private GameObject towerPick;
-    private GameObject towerUpgrade;
+    public GameObject towerUpgrade;
+    private GameObject towerupgrader;
 
     public Vector3 positionOffset_archer;
     public Vector3 positionOffset_wizard;
@@ -34,29 +35,24 @@ public class TowerBase : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (transform.childCount != 0)
+        if (transform.childCount != 0) //child varsa kule var.
         {
-            if(transform.GetChild(0).name == "OkcuKulesi(Clone)")
-            {
-                
-                towerUpgrade = (GameObject)Instantiate(towerSelect, transform.position, transform.rotation);
-                towerUpgrade.transform.parent = gameObject.transform;
-                Destroy(transform.GetChild(0).gameObject);
-
-            }
-
-
+            towerupgrader = (GameObject)Instantiate(towerUpgrade, transform.position, transform.rotation);
+            towerupgrader.transform.parent = transform;
             
-            Debug.Log("Zaten kule var! - TODO: Bu kýsým kullanýcý için ekrana yazýlsýn");
-            return;
+            //Debug.Log("Zaten kule var! - TODO: Bu kýsým kullanýcý için ekrana yazýlsýn");
+            //return;
         }
-
+        else
+        {
+            towerPick = (GameObject)Instantiate(towerSelect, transform.position, transform.rotation);
+            towerPick.transform.parent = gameObject.transform;
+        }
         // Kule kurma
         //GameObject towerToBuild = TowerBuilder.instance.GetTowerToBuild();
         //tower = (GameObject)Instantiate(towerToBuild, transform.position + positionOffset_wizard, transform.rotation);
         // Kule seçici deneme
-        towerPick = (GameObject)Instantiate(towerSelect, transform.position,transform.rotation);
-        towerPick.transform.parent = gameObject.transform;
+
         
 
     }
