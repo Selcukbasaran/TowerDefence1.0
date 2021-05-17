@@ -12,6 +12,8 @@ public class ArchUp1 : MonoBehaviour
     public float fireRate = 1f;
     private float fireCooldown = 0f;
 
+    public int Damage;
+
     [Header("Unity ayarlarý")]
     public string enemyTag = "Enemy";
 
@@ -20,7 +22,7 @@ public class ArchUp1 : MonoBehaviour
 
     public Transform archerOnTower;
     Animator archerShoot;
-    bool facingRight = true;
+    private bool facingRight = true;
     float yonHesabi;
 
     void Start()
@@ -92,7 +94,7 @@ public class ArchUp1 : MonoBehaviour
 
         if (arrow != null)
         {
-            arrow.Chase(hedef,facingRight);
+            arrow.Chase(hedef,Damage);
         }
 
         return;

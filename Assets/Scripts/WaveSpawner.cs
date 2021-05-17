@@ -8,7 +8,6 @@ public class WaveSpawner : MonoBehaviour
 
     public Transform spawnpoint;
 
-    public int gameHealth = 20;
 
     public float timeBetweenWaves = 3f;
     private float countdown = 2f;
@@ -40,8 +39,5 @@ public class WaveSpawner : MonoBehaviour
         Instantiate(enemyPrefab, spawnpoint.position, spawnpoint.rotation);// spawn etme
     }
 
-    public void LooseHealth()
-    {
-        gameHealth -= 1;
-    }
+    
 }

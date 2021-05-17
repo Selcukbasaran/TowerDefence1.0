@@ -32,7 +32,6 @@ public class TowerBase : MonoBehaviour
     }
 
 
-
     private void OnMouseDown()
     {
         if (transform.childCount != 0) //child varsa kule var.

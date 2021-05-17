@@ -8,11 +8,12 @@ public class Projectile_arrow : MonoBehaviour
     public bool face = true;
 
     public float speed = 10f;
+    private int Damage;
 
-    public void Chase(Transform _target , bool n)
+    public void Chase(Transform _target , int n)
     {
         hedef = _target;
-        face = n;
+        Damage = n;
     }
 
     // Update is called once per frame
@@ -52,7 +53,7 @@ public class Projectile_arrow : MonoBehaviour
     void HitTarget()
     {
         //Debug.Log("Vurdum!!");
-        hedef.gameObject.GetComponent<WizardWalk>().wizLooseHealth(5);
+        hedef.gameObject.GetComponent<AdjustHealth>().LooseHealth(Damage);
         Destroy(gameObject);
         
         //Destroy(hedef.gameObject); //þimdilik vurulan çýksýn

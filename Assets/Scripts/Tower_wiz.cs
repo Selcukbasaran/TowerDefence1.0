@@ -12,6 +12,7 @@ public class Tower_wiz : MonoBehaviour
 
     public float fireRate = 1f;
     private float fireCooldown = 0f;
+    public int Damage;
 
     [Header("Unity ayarlarý")]
     public string enemyTag = "Enemy";
@@ -70,7 +71,7 @@ public class Tower_wiz : MonoBehaviour
     {
         GameObject projectile = (GameObject)Instantiate(wizProjectile, hedef.position,hedef.rotation);
         GameObject shootAnimation = (GameObject)Instantiate(shootanim, wiz_firePoint.position, hedef.rotation);
-        Destroy(hedef.gameObject);
+        hedef.gameObject.GetComponent<AdjustHealth>().LooseHealth(Damage);
         Destroy(projectile, (float)0.5);
         Destroy(shootAnimation, (float)0.5);
     }

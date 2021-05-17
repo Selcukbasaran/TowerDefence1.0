@@ -213,6 +213,7 @@ MonoBehaviour:
   hedef: {fileID: 0}
   range: 5
   fireRate: 1
+  Damage: 8
   enemyTag: Enemy
   wizProjectile: {fileID: 6848910696020220479, guid: 6f9fc5323931a944eb98919efc8e55da, type: 3}
   wiz_firePoint: {fileID: 2546529645520686323}

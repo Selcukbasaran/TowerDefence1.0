@@ -225,6 +225,8 @@ MonoBehaviour:
   archer3: {fileID: 2021899971089778958, guid: 838527a025300b74488149e5f797dcdf, type: 3}
   wizard2: {fileID: 3714321468175720339, guid: d5d210f9e301aa345a31274cb341f698, type: 3}
   wizard3: {fileID: 6522040603854705788, guid: 434d69f2bd9978843929d80f4d7df0e8, type: 3}
+  support2: {fileID: 7949508649891772340, guid: 37270f08e08df0a4cabf5301c7e79671, type: 3}
+  support3: {fileID: 4967689033417829797, guid: b2dd42279f2935742bbddc4b0f6dee3f, type: 3}
   positionOffset_archer: {x: 0, y: 0.5, z: 0}
   positionOffset_wizard: {x: 0, y: 0.45, z: 0}
 --- !u!1 &8026102030335098912

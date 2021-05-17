@@ -14,7 +14,7 @@ public class UpgraderChild : MonoBehaviour
         part = currentTower.GetComponent<Types>().getPart();
         
         
-        Destroy(transform.parent.gameObject);
+        Destroy(transform.parent.gameObject); 
         transform.parent.GetComponent<UpgradeTower>().UpgradeT(part);
         
         

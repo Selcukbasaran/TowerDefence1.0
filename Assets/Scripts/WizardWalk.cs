@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +8,7 @@ public class WizardWalk : MonoBehaviour
     private Animator animator;
     public float speed = 5f;
 
-    public int Health = 20; //büyücü caný
+    private int Health;
     public GameObject looseHealth;
     
 
@@ -15,32 +16,46 @@ public class WizardWalk : MonoBehaviour
     private int waypointindex = 0; // kaçýncý waypointe hedefli
 
     public bool facingR = true; // saða bakýyor
+    
 
     void Start()
     {
         target = Waypoints.waypoints[0];
         looseHealth = GameObject.Find("Gamemanager");
         animator = gameObject.GetComponent<Animator>();
-        InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
+        //InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
     }
 
     
     void Update()
     {
+        Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
+            if (Health <= 0)
+            {
+
+                transform.gameObject.tag = "Untagged";
+                animator.Play("wizard_die");
+                Destroy(gameObject, 1.7f);
+                return;
+
+            }
+
         
         Vector2 directions = target.position - transform.position; //hedef ver
         transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World);
 
-        if(directions.x < 0 && facingR)
+        if (directions.x < 0 && facingR)
         {
             flipface();
         }
-        if(directions.x > 0 && !facingR)
+        if (directions.x > 0 && !facingR)
         {
             flipface();
         }
 
-        if(Vector2.Distance(transform.position,target.position)<= 0.1f)
+
+
+        if (Vector2.Distance(transform.position,target.position)<= 0.1f)
         {
             GetNextWayp();
         }
@@ -51,7 +66,7 @@ public class WizardWalk : MonoBehaviour
     {
         if (waypointindex >= Waypoints.waypoints.Length-1) //Sonuncu waypointe gelmiþse yok olsun.
         {
-            looseHealth.GetComponent<WaveSpawner>().LooseHealth();
+            looseHealth.GetComponent<Stats>().LooseGameHealth();
             Destroy(gameObject);
             return;
         }
@@ -59,24 +74,8 @@ public class WizardWalk : MonoBehaviour
         target = Waypoints.waypoints[waypointindex];
     }
 
-    void isDead()
-    {
-        if (Health <= 0)
-        {
-            animator.Play("wizard_die");
-            Destroy(gameObject);
+    
 
-        }
-
-    }
-
-
-
-
-    public void wizLooseHealth(int n)
-    {
-        Health -= n;
-    }
 
     void flipface()
     {

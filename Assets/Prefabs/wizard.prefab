@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 134802081186433176}
   - component: {fileID: 1775289529973605797}
   - component: {fileID: -1796663061000535129}
+  - component: {fileID: -485349715741225308}
   m_Layer: 0
   m_Name: wizard
   m_TagString: Enemy
@@ -116,6 +117,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  Health: 20
   looseHealth: {fileID: 0}
   facingR: 1
+--- !u!114 &-485349715741225308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3081491692634508247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3e40b9fc5ab9904d863c232b6b13d6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 20

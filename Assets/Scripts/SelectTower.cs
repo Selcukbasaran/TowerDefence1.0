@@ -23,6 +23,12 @@ public class SelectTower : MonoBehaviour
     private GameObject swap;
     //private GameObject swap2;
 
+    void OnMouseExit()
+    {
+        Destroy(gameObject);
+    }
+
+
     public void BuildTower(parts part)
     {
         switch (part)
@@ -35,6 +41,11 @@ public class SelectTower : MonoBehaviour
 
             case parts.wizard:
                 swap = (GameObject)Instantiate(wizardTower, transform.position + positionOffset_wizard, transform.rotation);
+                swap.transform.parent = transform.parent;
+                break;
+
+            case parts.support:
+                swap = (GameObject)Instantiate(supportTower, transform.position + positionOffset_wizard, transform.rotation);
                 swap.transform.parent = transform.parent;
                 break;
         }

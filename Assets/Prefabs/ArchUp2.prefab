@@ -100,8 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hedef: {fileID: 0}
   range: 5
-  part: 2
   fireRate: 1
+  Damage: 10
   enemyTag: Enemy
   arrowPrefab: {fileID: 6608557144854495284, guid: e8d7de3fba33de2418c2944af86b9270, type: 3}
   firePoint: {fileID: 3421265958539950971}
