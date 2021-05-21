@@ -25,6 +25,11 @@ public class knight : MonoBehaviour
         //InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        transform.Translate(Vector2.zero, Space.World);
+    }
+
 
     void Update()
     {
@@ -38,7 +43,7 @@ public class knight : MonoBehaviour
             return;
 
         }
-
+        
 
         Vector2 directions = target.position - transform.position; //hedef ver
         transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World);
@@ -73,16 +78,17 @@ public class knight : MonoBehaviour
         target = Waypoints.waypoints[waypointindex];
     }
 
-
-
-
-
-    
     void flipface()
     {
         facingR = !facingR;
         Vector3 tempLocalScale = transform.localScale;
         tempLocalScale.x *= -1;
         transform.localScale = tempLocalScale;
+    }
+
+
+    void knightStop()
+    {
+     //   Vector2 zero = 
     }
 }
