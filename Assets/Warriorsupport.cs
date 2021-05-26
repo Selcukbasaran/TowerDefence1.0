@@ -8,7 +8,7 @@ public class Warriorsupport : MonoBehaviour
     public string supportTag = "SupWarrior";
 
     public Transform hedef;
-    public float speed = 5f;
+    public float speed = 1f;
     public float range = 5f;
     public Vector2 offset;
     // Start is called before the first frame update
@@ -56,6 +56,8 @@ public class Warriorsupport : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("Girdik.");
+        //new WaitForSeconds(10000);
+        transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
     }
 
 

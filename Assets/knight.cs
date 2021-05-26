@@ -5,11 +5,12 @@ using UnityEngine;
 public class knight : MonoBehaviour
 {
     private Animator animator;
-    public float speed = 5f;
+    public float speed = 1f;
 
     private int Health;
     public GameObject looseHealth;
-
+    public bool isIdle;
+    public Rigidbody2D rb;
 
     private Transform target; // hedef waypoint
     private int waypointindex = 0; // kaçýncý waypointe hedefli
@@ -19,17 +20,27 @@ public class knight : MonoBehaviour
 
     void Start()
     {
+        isIdle = true;
         target = Waypoints.waypoints[0];
         looseHealth = GameObject.Find("Gamemanager");
         animator = gameObject.GetComponent<Animator>();
         //InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
+        transform.GetComponent<Rigidbody2D>();
+        animator.SetBool("isIdle", true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        transform.Translate(Vector2.zero, Space.World);
+        //transform.Translate(Vector2.down, Space.World);
+        animator.SetBool("isIdle", false);
+        speed = 0;
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        animator.SetBool("isIdle", true);
+        speed = 1f;
+    }
 
     void Update()
     {
