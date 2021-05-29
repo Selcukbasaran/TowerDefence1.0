@@ -4,29 +4,92 @@ using UnityEngine;
 
 public class Warriorsupport : MonoBehaviour
 {
-    public string enemyTag = "Enemy";
-    public string supportTag = "SupWarrior";
+    private bool isIdle = true; //idle means no enemy in sight but may be still moving
+    private bool stopped = false; //so this check if its moving even if its idle or not.
+    //Another usage is that GameObject has to move back to the return point if its false
 
-    public Transform hedef;
-    public float speed = 1f;
-    public float range = 5f;
-    public Vector2 offset;
+    public float speed = 1f; 
+    public float range; // Tower range. Can't go further.
+    
+    public Transform returnPoint; //Return default position after encounter
+    public Animator anim; //objects animator
+    public Transform hedef; //GameObject to fight with.
+
+    private bool hasTarget = false;
+    public string enemyTag = "Enemy";
+
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        returnPoint = transform.parent.GetChild(1).transform; //Return point has obtained.
+        anim = transform.gameObject.GetComponent<Animator>(); //animator has obtained
+        range = transform.parent.gameObject.GetComponent<SupTower>().range; //Tower range has obtained. 
+        InvokeRepeating("FindTarget", 0f, 0.5f); //find target cycles twice per second
     }
 
-    void UpdateTarget()
+    // Update is called once per frame
+    void Update()
     {
+        if (isIdle && !stopped) // is it Idle and still moving?
+        {
+            anim.SetBool("isIdle", false);
+            Vector2 returnBack = returnPoint.position - transform.position;
+            transform.Translate(returnBack.normalized * speed * Time.deltaTime, Space.World);
+            if (Vector2.Distance(transform.position, returnPoint.position) <= 0.1f)
+            {
+                stopped = true;
+                anim.SetBool("isIdle", true); //animatörde idle kalacak
+            }
+        }
+
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        speed = 0;
+        stopped = true;
+        anim.SetBool("stopped", true);
+        anim.SetBool("isIdle", false);
+        InvokeRepeating("Duel", 0f, 1f);
+    }
+    void Duel()
+    {
+        Debug.Log("Yeaa we are duelling right now. WOW");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // THIS PART SEARCHS FOR ENEMY
+    void FindTarget()
+    {
+        if (hasTarget) 
+        {
+            return;
+        }
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        float shortestdistance = Mathf.Infinity; //Eðer düþman bulunmamýþsa düþmana olan mesafemiz sonsuzdur !?!?
+        float shortestdistance = Mathf.Infinity; //Eðer düþman bulunmamýþsa düþmana olan mesafemiz sonsuzdur. nE!?!?
         GameObject nearestEnemy = null;
 
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies)// find closest target 
         {
             float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < shortestdistance && hedef != null)
+            if (distanceToEnemy < shortestdistance)
             {
                 shortestdistance = distanceToEnemy;
                 nearestEnemy = enemy;
@@ -35,41 +98,11 @@ public class Warriorsupport : MonoBehaviour
 
         if (nearestEnemy != null && shortestdistance <= range)
         {
-            hedef = nearestEnemy.transform;   //düþman bulduk menzilimizde o zaman hedefimiz o düþman
+            hedef = nearestEnemy.transform; //if closest enemy is in range, its the target.
         }
         else
         {
             hedef = null;
         }
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            //hedef = collision.gameObject;
-            Debug.Log("EE çarpýþtýk tamam");
-            //Destroy(collision.transform.gameObject);
-            
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Girdik.");
-        //new WaitForSeconds(10000);
-        transform.Translate(Vector2.up * speed * Time.deltaTime, Space.World);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (hedef == null) return;
-
-        Vector2 direction = hedef.position - transform.position;
-        transform.Translate(direction.normalized + offset * speed * Time.deltaTime, Space.World);
-        //Vector2 direction = hedef.transform.position - transform.position;
-        //transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
-
     }
 }

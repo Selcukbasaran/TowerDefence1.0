@@ -98,8 +98,5 @@ public class knight : MonoBehaviour
     }
 
 
-    void knightStop()
-    {
-     //   Vector2 zero = 
-    }
+    
 }
