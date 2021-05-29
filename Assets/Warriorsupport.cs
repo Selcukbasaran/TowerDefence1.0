@@ -7,16 +7,19 @@ public class Warriorsupport : MonoBehaviour
     private bool isIdle = true; //idle means no enemy in sight but may be still moving
     private bool stopped = false; //so this check if its moving even if its idle or not.
     //Another usage is that GameObject has to move back to the return point if its false
+    public bool opponentDead = false;
+    Collider2D m_collider;
 
     public float speed = 1f; 
     public float range; // Tower range. Can't go further.
     
     public Transform returnPoint; //Return default position after encounter
     public Animator anim; //objects animator
-    public Transform hedef; //GameObject to fight with.
+    private Transform hedef; //GameObject to fight with.
 
     private bool hasTarget = false;
     public string enemyTag = "Enemy";
+    public GameObject looseHealtForEnemy;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,7 @@ public class Warriorsupport : MonoBehaviour
         anim = transform.gameObject.GetComponent<Animator>(); //animator has obtained
         range = transform.parent.gameObject.GetComponent<SupTower>().range; //Tower range has obtained. 
         InvokeRepeating("FindTarget", 0f, 0.5f); //find target cycles twice per second
+        m_collider = gameObject.GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -42,6 +46,9 @@ public class Warriorsupport : MonoBehaviour
             }
         }
 
+        if (hedef == null) return;
+
+
     }
 
 
@@ -52,13 +59,38 @@ public class Warriorsupport : MonoBehaviour
         anim.SetBool("stopped", true);
         anim.SetBool("isIdle", false);
         InvokeRepeating("Duel", 0f, 1f);
+        Debug.LogWarning("Ben kaç kere triggerlýyorum?");
+        looseHealtForEnemy = collision.gameObject;
     }
     void Duel()
     {
         Debug.Log("Yeaa we are duelling right now. WOW");
+
+        looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(5);
+        if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
+        if (opponentDead)
+        {
+            CancelInvoke("Duel");
+        }
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        Debug.Log("bari sen çalýþ");
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        Debug.LogWarning("OnTriggerExit çalýþmýyor");
+        CancelInvoke("Duel");
+        anim.SetBool("isIdle", true);
+        opponentDead = false;
+
+       
     }
 
-
+    void setDeadState()
+    {
+        opponentDead = true;
+    }
 
 
 

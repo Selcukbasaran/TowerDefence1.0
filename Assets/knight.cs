@@ -11,6 +11,8 @@ public class knight : MonoBehaviour
     public GameObject looseHealth;
     public bool isIdle;
     public Rigidbody2D rb;
+    Collider2D m_collider;
+    private bool alreadyDead = false;
 
     private Transform target; // hedef waypoint
     private int waypointindex = 0; // kaçýncý waypointe hedefli
@@ -27,6 +29,7 @@ public class knight : MonoBehaviour
         //InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
         transform.GetComponent<Rigidbody2D>();
         animator.SetBool("isIdle", true);
+        m_collider = gameObject.GetComponent<Collider2D>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,16 +42,18 @@ public class knight : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         animator.SetBool("isIdle", true);
-        speed = 1f;
+        if (!alreadyDead) speed = 1f;
     }
 
     void Update()
     {
         Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
-        if (Health <= 0)
+        if (Health <= 0 && !alreadyDead)
         {
-
+            alreadyDead = true;
             transform.gameObject.tag = "Untagged";
+            m_collider.enabled = !(m_collider.enabled);
+            Debug.Log("Collider is " + m_collider.enabled);
             animator.Play("KnightDie");
             Destroy(gameObject, 1.7f);
             return;
