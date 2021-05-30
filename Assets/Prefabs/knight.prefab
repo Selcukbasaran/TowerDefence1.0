@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6996656851954929496}
   - component: {fileID: 6996656851954929501}
   - component: {fileID: 1896087961621553522}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: knight
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -118,6 +118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   looseHealth: {fileID: 0}
+  isIdle: 1
+  rb: {fileID: 0}
   facingR: 1
 --- !u!114 &1896087961621553522
 MonoBehaviour:

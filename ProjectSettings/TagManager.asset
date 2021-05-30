@@ -10,13 +10,17 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Tower
   - Water
   - UI
   - 
   - 
   - 
   - 
+  - Enemy
+  - SupportTowerUnits
+  - 
+  - Dead
   - 
   - 
   - 
@@ -33,11 +37,7 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - Points
+  - Duels
   - 
   m_SortingLayers:
   - name: Default

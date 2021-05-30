@@ -6,7 +6,7 @@ public class SupTower : MonoBehaviour
 {
     public GameObject warrior;
     public Transform origin;
-    
+    //public GameObject warriorPrefab;
 
     public float countDown;
     public float range;

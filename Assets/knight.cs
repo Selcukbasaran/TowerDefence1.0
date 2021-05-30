@@ -19,7 +19,8 @@ public class knight : MonoBehaviour
 
     public bool facingR = true; // saða bakýyor
 
-
+    public GameObject looseHealtForEnemy;
+    public bool opponentDead = false;
     void Start()
     {
         isIdle = true;
@@ -37,13 +38,34 @@ public class knight : MonoBehaviour
         //transform.Translate(Vector2.down, Space.World);
         animator.SetBool("isIdle", false);
         speed = 0;
+        gameObject.layer = 30;
+        InvokeRepeating("Duel", 0f, 1.2f);
+        looseHealtForEnemy = collision.gameObject;
+    }
+    void Duel()
+    {
+        //Debug.Log("Yeaa we are duelling right now. WOW");
+
+        looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(7);
+        if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
+        if (opponentDead)
+        {
+            CancelInvoke("Duel");
+            //animator.SetBool("isIdle", true);
+            //speed = 1;
+            gameObject.layer = 10; // Layer 11:SupportTowerUnits
+        }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
+        CancelInvoke("Duel");
+        gameObject.layer = 10; // Layer 10: Enemy
         animator.SetBool("isIdle", true);
-        if (!alreadyDead) speed = 1f;
+        speed = 1;
+
     }
+
 
     void Update()
     {
@@ -51,9 +73,11 @@ public class knight : MonoBehaviour
         if (Health <= 0 && !alreadyDead)
         {
             alreadyDead = true;
+            speed = 0;
             transform.gameObject.tag = "Untagged";
-            m_collider.enabled = !(m_collider.enabled);
-            Debug.Log("Collider is " + m_collider.enabled);
+            gameObject.layer = 13; //13. layer ölen birliklerin layerý
+            //m_collider.enabled = !(m_collider.enabled);
+            //Debug.Log("Collider is " + m_collider.enabled);
             animator.Play("KnightDie");
             Destroy(gameObject, 1.7f);
             return;

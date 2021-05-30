@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 630456376728234497}
   - component: {fileID: 3275457140689263842}
   - component: {fileID: 8650377401553643135}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TowerBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
