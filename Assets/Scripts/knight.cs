@@ -69,14 +69,19 @@ public class knight : MonoBehaviour
 
     void Update()
     {
+        if (alreadyDead) return;
+        
+
+        
         Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
-        if (Health <= 0 && !alreadyDead)
+        if (Health <= 0)
         {
             alreadyDead = true;
             speed = 0;
+            CancelInvoke("Duel");
             transform.gameObject.tag = "Untagged";
-            gameObject.layer = 13; //13. layer ölen birliklerin layerý
-            //m_collider.enabled = !(m_collider.enabled);
+            gameObject.layer = 14; //99. layer ölen düþman birliklerin layerý
+            m_collider.enabled = !(m_collider.enabled);
             //Debug.Log("Collider is " + m_collider.enabled);
             animator.Play("KnightDie");
             Destroy(gameObject, 1.7f);

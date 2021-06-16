@@ -224,7 +224,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142462, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
@@ -874,10 +874,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1551435316270142458, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
-      propertyPath: speed
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142461, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -925,6 +921,10 @@ PrefabInstance:
     - target: {fileID: 1551435316270142462, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_Name
       value: knight
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984479243562941909, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
+      propertyPath: Health
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}

@@ -42,6 +42,7 @@ public class Warriorsupport : MonoBehaviour
         Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
         if (Health <= 0 && !alreadyDead)
         {
+            CancelInvoke("Duel");
             alreadyDead = true;
             speed = 0;
             gameObject.layer = 13; //13. layer ölen birliklerin layerý
@@ -98,7 +99,7 @@ public class Warriorsupport : MonoBehaviour
     void Duel()
     {
         //Debug.Log("Yeaa we are duelling right now. WOW");
-
+        new WaitForSecondsRealtime(.8f);
         looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(5);
         if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
         if (opponentDead)
