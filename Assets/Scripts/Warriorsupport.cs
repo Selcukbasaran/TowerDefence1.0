@@ -51,7 +51,7 @@ public class Warriorsupport : MonoBehaviour
             return;
 
         }
-        if (isIdle && !stopped) // is it Idle and still moving?
+        if (isIdle && !stopped ) // is it Idle and still moving? 
         {
             anim.SetBool("isIdle", true);
             anim.SetBool("stopped", false);
@@ -67,8 +67,8 @@ public class Warriorsupport : MonoBehaviour
 
         if (hedef == null) return;
 
-        //Vector2 directions = hedef.GetChild(0).transform.position - transform.position; //hedef ver
-        //transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World);
+        Vector2 directions = hedef.GetChild(0).transform.position - transform.position; //hedef ver
+        transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World);
 
     }
 
