@@ -6,13 +6,19 @@ public class ArcShot : MonoBehaviour
 {
     public AnimationCurve curve;
     public Transform target;
+    public Animator anim;
 
     private Vector3 start;
     private Coroutine coroutine;
 
+    public string enemyTag = "Enemy";
+    public float blastRange;
+    public int damage;
+
     private void Awake()
     {
         start = transform.position;
+        anim = transform.gameObject.GetComponent<Animator>();
     }
 
     private void Update()
@@ -24,6 +30,11 @@ public class ArcShot : MonoBehaviour
                 coroutine = StartCoroutine(Curve());
             }
         }
+    }
+    public void StartCoro(Transform t)
+    {
+        target = t;
+        coroutine = StartCoroutine(Curve());
     }
 
     IEnumerator Curve()
@@ -48,7 +59,20 @@ public class ArcShot : MonoBehaviour
         }
 
         // impact 
-
+        Debug.Log("Vurdum");
+        //anim.SetBool("impact", true); Animatorda bool deðerle animasyon state ini deðiþtirmek oyun içinde 
+        anim.Play("stoneBlast");//yeterince hýzlý ve yumuþak bir geçiþ sunmuyor. Animasyonu elle oynatmak daha hýzlý.
+        //Find target who got hit
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        foreach (GameObject enemy in enemies)
+        {
+            float distanceToEnemy = Vector2.Distance(transform.position, enemy.transform.position);
+            if (distanceToEnemy < blastRange)
+            {
+                enemy.GetComponent<AdjustHealth>().LooseHealth(damage);
+            }
+        }
+        Destroy(gameObject, 0.6f);
         coroutine = null;
     }
 }

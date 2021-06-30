@@ -16,6 +16,7 @@ public class SelectTower : MonoBehaviour
     public GameObject archerTower;
     public GameObject wizardTower;
     public GameObject supportTower;
+    public GameObject stoneTower;
 
     public Vector3 positionOffset_archer;
     public Vector3 positionOffset_wizard;
@@ -46,6 +47,10 @@ public class SelectTower : MonoBehaviour
 
             case parts.support:
                 swap = (GameObject)Instantiate(supportTower, transform.position + positionOffset_wizard, transform.rotation);
+                swap.transform.parent = transform.parent;
+                break;
+            case parts.stone:
+                swap = (GameObject)Instantiate(stoneTower, transform.position + positionOffset_archer, transform.rotation);
                 swap.transform.parent = transform.parent;
                 break;
         }
