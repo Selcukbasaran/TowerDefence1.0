@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: c4afe19228e513542aaf8348690c2f5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -124,7 +124,6 @@ MonoBehaviour:
   anim: {fileID: 0}
   enemyTag: Enemy
   blastRange: 2
-  damage: 10
 --- !u!95 &5203458814601004067
 Animator:
   serializedVersion: 3

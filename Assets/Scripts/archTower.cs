@@ -95,7 +95,8 @@ public class archTower : MonoBehaviour
         {
             arrow.Chase(hedef, Damage);
         }
-        
+
+        //archerShoot.SetBool("isShooting", false);
         return;
     }
 

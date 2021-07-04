@@ -32,7 +32,7 @@ public class Warriorsupport : MonoBehaviour
         returnPoint = transform.parent.GetChild(1).transform; //Return point has obtained.
         anim = transform.gameObject.GetComponent<Animator>(); //animator has obtained
         range = transform.parent.gameObject.GetComponent<SupTower>().range; //Tower range has obtained. 
-        InvokeRepeating("FindTarget", 0f, 0.5f); //find target cycles twice per second
+        InvokeRepeating("FindTarget", 0f, 0.1f); //find target cycles twice per second
         m_collider = gameObject.GetComponent<Collider2D>();
     }
 

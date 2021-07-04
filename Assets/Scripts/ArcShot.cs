@@ -13,12 +13,18 @@ public class ArcShot : MonoBehaviour
 
     public string enemyTag = "Enemy";
     public float blastRange;
-    public int damage;
+    private int damage; //comes from tower
 
     private void Awake()
     {
         start = transform.position;
+        //anim = transform.gameObject.GetComponent<Animator>();
+        //damage = transform.parent.gameObject.GetComponent<stoneTowerShoot>().Damage;
+    }
+    private void Start()
+    {
         anim = transform.gameObject.GetComponent<Animator>();
+        damage = transform.parent.gameObject.GetComponent<stoneTowerShoot>().Damage;
     }
 
     private void Update()
@@ -59,9 +65,8 @@ public class ArcShot : MonoBehaviour
         }
 
         // impact 
-        Debug.Log("Vurdum");
-        //anim.SetBool("impact", true); Animatorda bool deðerle animasyon state ini deðiþtirmek oyun içinde 
-        anim.Play("stoneBlast");//yeterince hýzlý ve yumuþak bir geçiþ sunmuyor. Animasyonu elle oynatmak daha hýzlý.
+        //Debug.Log("Vurdum");
+        anim.SetBool("impact", true);  
         //Find target who got hit
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         foreach (GameObject enemy in enemies)

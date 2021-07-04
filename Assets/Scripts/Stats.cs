@@ -9,10 +9,12 @@ public class Stats : MonoBehaviour
 
     public GameObject gameOverUI;
 
+    public int gold;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -39,5 +41,21 @@ public class Stats : MonoBehaviour
         Time.timeScale = 0;
         gameOverUI.SetActive(true);
         //Debug.LogError("KAYBETTIN!");
+    }
+
+    public bool MinusGold(int value)
+    {
+        if (gold - value < 0) return 0;
+
+        if (gold - value < 0)
+        {
+            gold -= value;
+            return 1;
+        }
+        else return 0;
+    }
+    public void PlusGold(int value)
+    {
+        gold += value;
     }
 }

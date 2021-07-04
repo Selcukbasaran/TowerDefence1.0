@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142461, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.31
+      value: -15.33
       objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142461, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_LocalPosition.y
@@ -224,7 +224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142462, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7984479243562941909, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
+      propertyPath: Health
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
@@ -867,63 +871,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panSpeed: 10
---- !u!1001 &6176730229850401767
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.34
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004068, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5203458814601004070, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
-      propertyPath: m_Name
-      value: MortarProjectile
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 20e644500a9e967498fd2e1d62d30570, type: 3}
 --- !u!1001 &8403383086946453436
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -937,7 +884,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142461, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.87
+      value: -15.7699995
       objectReference: {fileID: 0}
     - target: {fileID: 1551435316270142461, guid: f9daf4adc3f24c04eb983174fbabfa15, type: 3}
       propertyPath: m_LocalPosition.y

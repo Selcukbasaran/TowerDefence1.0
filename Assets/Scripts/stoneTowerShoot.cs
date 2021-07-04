@@ -45,6 +45,7 @@ public class stoneTowerShoot : MonoBehaviour
     void Shoot()
     {
         GameObject projectile = (GameObject)Instantiate(stoneProj, projSpawn.position, projSpawn.rotation);
+        projectile.transform.parent = transform;
         projectile.gameObject.GetComponent<ArcShot>().StartCoro(hedef);
 
     }
