@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    public Transform enemyPrefab;
+    public static int enemyCount; //Current enemy count in scene
 
+
+    public Transform enemyPrefab;
     public Transform spawnpoint;
 
 
@@ -37,7 +39,9 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy()
     {
         Instantiate(enemyPrefab, spawnpoint.position, spawnpoint.rotation);// spawn etme
+        enemyCount++;
     }
+
 
     
 }

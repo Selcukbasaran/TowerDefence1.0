@@ -5,7 +5,7 @@ using UnityEngine;
 public class knight : MonoBehaviour
 {
     private Animator animator;
-    public float speed = 1f;
+    
 
     private int Health;
     public GameObject looseHealth;
@@ -21,11 +21,16 @@ public class knight : MonoBehaviour
 
     public GameObject looseHealtForEnemy;
     public bool opponentDead = false;
+    public float speed;
+
+    //public string tag2 = "EnemyFight";
+
+    private GameObject Gold; //for obtaining gold when killed. This is the game manager
     void Start()
     {
         isIdle = true;
         target = Waypoints.waypoints[0];
-        looseHealth = GameObject.Find("Gamemanager");
+        looseHealth = GameObject.Find("GameManager");
         animator = gameObject.GetComponent<Animator>();
         //InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
         transform.GetComponent<Rigidbody2D>();
@@ -33,18 +38,22 @@ public class knight : MonoBehaviour
         m_collider = gameObject.GetComponent<Collider2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    /*private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Yusuuuuuuuuuf");
+        //transform.gameObject.tag = "EnemyFight";
         //transform.Translate(Vector2.down, Space.World);
         animator.SetBool("isIdle", false);
-        speed = 0;
+        
         gameObject.layer = 30;
         InvokeRepeating("Duel", 0f, 1.2f);
         looseHealtForEnemy = collision.gameObject;
+        
+        
     }
     void Duel()
     {
-        //Debug.Log("Yeaa we are duelling right now. WOW");
+        Debug.Log("Yeaa we are duelling right now. WOW");
 
         looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(7);
         if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
@@ -52,23 +61,26 @@ public class knight : MonoBehaviour
         {
             CancelInvoke("Duel");
             //animator.SetBool("isIdle", true);
-            //speed = 1;
-            gameObject.layer = 10; // Layer 11:SupportTowerUnits
+            
+            gameObject.layer = 30;
+            transform.gameObject.tag = "Enemy";// Layer 11:SupportTowerUnits
         }
     }
 
     void OnTriggerExit2D(Collider2D collision)
     {
         CancelInvoke("Duel");
+        Debug.Log("BUNU TAKIP ET");
         gameObject.layer = 10; // Layer 10: Enemy
         animator.SetBool("isIdle", true);
-        speed = 1;
-
-    }
+        
+        transform.gameObject.tag = "Enemy";
+    }*/
 
 
     void Update()
     {
+        speed = gameObject.GetComponent<SpeedNDuel>().GetSpeed();
         if (alreadyDead) return;
         
 
@@ -76,9 +88,9 @@ public class knight : MonoBehaviour
         Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
         if (Health <= 0)
         {
+            Gold = GameObject.Find("GameManager");
+            Gold.GetComponent<Stats>().PlusGold(25);
             alreadyDead = true;
-            speed = 0;
-            CancelInvoke("Duel");
             transform.gameObject.tag = "Untagged";
             gameObject.layer = 14; //99. layer ölen düþman birliklerin layerý
             m_collider.enabled = !(m_collider.enabled);

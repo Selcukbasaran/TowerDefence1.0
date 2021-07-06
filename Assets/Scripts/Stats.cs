@@ -45,14 +45,14 @@ public class Stats : MonoBehaviour
 
     public bool MinusGold(int value)
     {
-        if (gold - value < 0) return 0;
+        if (gold - value < 0) return true;
 
-        if (gold - value < 0)
+        if (gold - value >= 0)
         {
             gold -= value;
-            return 1;
+            return false;
         }
-        else return 0;
+        else return true;
     }
     public void PlusGold(int value)
     {

@@ -30,9 +30,9 @@ public class UpgradeTower : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    void AdjustGold(int value)
+    public bool AdjustGold(int value)
     {
-        gameManager.GetComponent<Stats>().MinusGold(value);
+        return gameManager.GetComponent<Stats>().MinusGold(value);
     }
 
     public void UpgradeT(parts part)
@@ -40,17 +40,29 @@ public class UpgradeTower : MonoBehaviour
         switch (part)
         {
             case parts.archer:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(archer2, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(archer2, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.archer2:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(archer3, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(archer3, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.archer3:
@@ -59,17 +71,29 @@ public class UpgradeTower : MonoBehaviour
 
             //Wizard
             case parts.wizard:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(wizard2, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(wizard2, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.wizard2:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(wizard3, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(wizard3, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.wizard3:
@@ -78,17 +102,29 @@ public class UpgradeTower : MonoBehaviour
 
             //Support Tower
             case parts.support:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(support2, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(support2, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.support2:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(support3, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(support3, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.support3:
@@ -97,17 +133,29 @@ public class UpgradeTower : MonoBehaviour
             
             //Stone Tower
             case parts.stone:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(stone2, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(stone2, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.stone2:
-                Destroy(transform.parent.GetChild(0).gameObject);
-                swap = (GameObject)Instantiate(stone3, transform.position + positionOffset_archer, transform.rotation);
-                swap.transform.parent = transform.parent;
-                AdjustGold(100);
+                if (AdjustGold(100))
+                {
+                    Debug.Log("Altýn yok");
+                }
+                else
+                {
+                    Destroy(transform.parent.GetChild(0).gameObject);
+                    swap = (GameObject)Instantiate(stone3, transform.position + positionOffset_archer, transform.rotation);
+                    swap.transform.parent = transform.parent; 
+                }
                 break;
 
             case parts.stone3:

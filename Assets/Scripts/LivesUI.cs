@@ -9,6 +9,6 @@ public class LivesUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        lives.text = "Can: " + gamemanager.GetComponent<Stats>().gameHealth.ToString();
+        lives.text = gamemanager.GetComponent<Stats>().gameHealth.ToString();
     }
 }

@@ -16,23 +16,71 @@ public class WizardWalk : MonoBehaviour
     private int waypointindex = 0; // kaçýncý waypointe hedefli
 
     public bool facingR = true; // saða bakýyor
-    
+
+    public GameObject looseHealtForEnemy;
+    public bool opponentDead = false;
 
     void Start()
     {
         target = Waypoints.waypoints[0];
-        looseHealth = GameObject.Find("Gamemanager");
+        looseHealth = GameObject.Find("GameManager");
         animator = gameObject.GetComponent<Animator>();
         //InvokeRepeating("isDead", 0f, 0.2f); // saniyede iki defa öldü mü diye kontrol etsin
     }
 
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //transform.Translate(Vector2.down, Space.World);
+        animator.SetBool("isIdle", false);
+        speed = 0;
+        gameObject.layer = 30;
+        InvokeRepeating("Duel", 0f, 1.2f);
+        looseHealtForEnemy = collision.gameObject;
+    }
+    void Duel()
+    {
+        //Debug.Log("Yeaa we are duelling right now. WOW");
+        try
+        {
+            looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(7);
+            if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
+        }
+        catch (Exception)
+        {
+            opponentDead = true;
+            throw;
+        }
+        
+        
+        if (opponentDead)
+        {
+            CancelInvoke("Duel");
+            //animator.SetBool("isIdle", true);
+            //speed = 1;
+            gameObject.layer = 10; // Layer 11:SupportTowerUnits
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        CancelInvoke("Duel");
+        gameObject.layer = 10; // Layer 10: Enemy
+        animator.SetBool("isIdle", true);
+        speed = 1;
+
+    }
+
+
+
+
+
     void Update()
     {
         Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
             if (Health <= 0)
             {
-
+            WaveSpawner.enemyCount--;
                 transform.gameObject.tag = "Untagged";
                 animator.Play("wizard_die");
                 Destroy(gameObject, 1.7f);

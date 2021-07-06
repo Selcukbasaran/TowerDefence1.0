@@ -24,12 +24,13 @@ public class Warriorsupport : MonoBehaviour
 
     private bool hasTarget = false;
     public string enemyTag = "Enemy";
+    public string enemyfightTag = "EnemyFight";
     public GameObject looseHealtForEnemy;
+    private bool gotTarget = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        returnPoint = transform.parent.GetChild(1).transform; //Return point has obtained.
         anim = transform.gameObject.GetComponent<Animator>(); //animator has obtained
         range = transform.parent.gameObject.GetComponent<SupTower>().range; //Tower range has obtained. 
         InvokeRepeating("FindTarget", 0f, 0.1f); //find target cycles twice per second
@@ -39,6 +40,14 @@ public class Warriorsupport : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (looseHealtForEnemy != null)
+        {
+            gotTarget = true;
+        }
+        else
+        {
+            gotTarget = false;
+        }
         Health = transform.gameObject.GetComponent<AdjustHealth>().Health;
         if (Health <= 0 && !alreadyDead)
         {
@@ -67,14 +76,18 @@ public class Warriorsupport : MonoBehaviour
 
         if (hedef == null) return;
 
-        Vector2 directions = hedef.GetChild(0).transform.position - transform.position; //hedef ver
-        transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World);
+        if (hedef.tag == "Enemy")
+        {
+            Vector2 directions = hedef.transform.position - transform.position; //hedef ver
+            transform.Translate(directions.normalized * speed * Time.deltaTime, Space.World); 
+        }
 
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        looseHealtForEnemy = collision.gameObject;
         speed = 0;
         stopped = true;
         anim.SetBool("stopped", true);
@@ -82,7 +95,6 @@ public class Warriorsupport : MonoBehaviour
         gameObject.layer = 30;  // Layer 30: Duels
         InvokeRepeating("Duel", 0f, 1f);
         Debug.LogWarning("Ben kaç kere triggerlýyorum?");
-        looseHealtForEnemy = collision.gameObject;
 
         //Yön deðiþtirme
         yonHesabi = transform.position.x - collision.transform.position.x;
@@ -99,9 +111,17 @@ public class Warriorsupport : MonoBehaviour
     void Duel()
     {
         //Debug.Log("Yeaa we are duelling right now. WOW");
-        new WaitForSecondsRealtime(.8f);
-        looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(5);
-        if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
+        try
+        {
+            looseHealtForEnemy.GetComponent<AdjustHealth>().LooseHealth(5);
+            if (looseHealtForEnemy.GetComponent<AdjustHealth>().Health <= 0) opponentDead = true;
+        }
+        catch (System.Exception)
+        {
+            opponentDead = true;
+            throw;
+        }
+        
         if (opponentDead)
         {
             CancelInvoke("Duel");
@@ -117,7 +137,8 @@ public class Warriorsupport : MonoBehaviour
         isIdle = true;
         stopped = false;
         speed = 1;
-       
+        gameObject.layer = 11; // Layer 11:SupportTowerUnits
+
     }
 
 
@@ -140,15 +161,19 @@ public class Warriorsupport : MonoBehaviour
 
 
 
-
+    public void SetReturnPoint(Transform a)
+    {
+        returnPoint = a;
+    }
 
     // THIS PART SEARCHS FOR ENEMY
     void FindTarget()
     {
-        if (hasTarget) 
+        if (hasTarget || gotTarget) 
         {
             return;
         }
+        
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         float shortestdistance = Mathf.Infinity; //Eðer düþman bulunmamýþsa düþmana olan mesafemiz sonsuzdur. nE!?!?
         GameObject nearestEnemy = null;
@@ -171,5 +196,10 @@ public class Warriorsupport : MonoBehaviour
         {
             hedef = null;
         }
+    }
+
+    public void SetTarget(Transform value)
+    {
+        hedef = value;
     }
 }
