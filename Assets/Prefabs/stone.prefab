@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hedef: {fileID: 0}
-  range: 10
+  range: 7
   fireRate: 0.2
   Damage: 10
   projSpawn: {fileID: 5032529061491197657}

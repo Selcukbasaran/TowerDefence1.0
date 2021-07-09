@@ -29,13 +29,13 @@ public class ArcShot : MonoBehaviour
 
     private void Update()
     {
-        if (coroutine == null)
+        /*if (coroutine == null)
         {
             if (Input.GetKeyDown(KeyCode.Space) == true)
             {
                 coroutine = StartCoroutine(Curve());
             }
-        }
+        }*/
     }
     public void StartCoro(Transform t)
     {

@@ -142,7 +142,5 @@ public class knight : MonoBehaviour
         tempLocalScale.x *= -1;
         transform.localScale = tempLocalScale;
     }
-
-
-    
+ 
 }
